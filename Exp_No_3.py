@@ -9,11 +9,11 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 model = LinearRegression()
 model.fit(X_train, y_train)
 
-predictions = model.predict(X_test)
+y_pred = model.predict(X_test)
 
-mse = mean_squared_error(y_test, predictions)
-mae = mean_absolute_error(y_test, predictions)
-r2 = r2_score(y_test, predictions)
+mse = mean_squared_error(y_test, y_pred)
+mae = mean_absolute_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
 
 print("Linear Regression Performance Metrics:")
 print(f"Mean Squared Error (MSE): {mse:.4f}")

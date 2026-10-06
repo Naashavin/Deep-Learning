@@ -35,6 +35,7 @@ for cfg in configs:
     optimizer = cfg['opt'](model.parameters(), lr=cfg['lr'])
     criterion = nn.CrossEntropyLoss()
     
+    final_loss = 0.0
     for epoch in range(5):
         for bx, by in loader:
             optimizer.zero_grad()
@@ -42,5 +43,6 @@ for cfg in configs:
             loss = criterion(out, by)
             loss.backward()
             optimizer.step()
+            final_loss = loss.item()
 
-    print(f"{cfg['batch_size']:<10} | {cfg['lr']:<6} | {cfg['opt'].__name__:<10} | {cfg['act'].__name__:<10} | {loss.item():.4f}")
+    print(f"{cfg['batch_size']:<10} | {cfg['lr']:<6} | {cfg['opt'].__name__:<10} | {cfg['act'].__name__:<10} | {final_loss:.4f}")
